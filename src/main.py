@@ -53,7 +53,8 @@ def main():
         ui.section_title(f"Level {level}: {lm.title(level)}")
         lesson = lm.get(level)
         ui.type_writer(lesson['lesson'])
-        vz.show_preview(level)
+        vz.show_preview(level, ui=ui)   # ✅ Pass ui
+
         attempts = 0
         while True:
             attempts += 1
@@ -81,7 +82,7 @@ def main():
                 if attempts >= 3:
                     ui.print_info('Tip: type hint for a hint or skip to continue.')
 
-        vz.build(level-1)
+        vz.build(level-1, ui=ui)   # ✅ Pass ui
         ui.pause(0.6)
 
         # After level 3, unlock mini editor challenge
@@ -109,3 +110,4 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print('\nBye — keep building!')
         sys.exit(0)
+
